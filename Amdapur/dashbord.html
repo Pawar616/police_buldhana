@@ -47,7 +47,10 @@
 
       .card {
         border-radius: 10px;
+        /* margin-right: 5rem !important; */
       }
+
+      
 
       .card-header h5 {
         margin: 0;
@@ -76,6 +79,10 @@
             .img-section {
                 display: none !important;
         }
+        .form-section {
+        /* border-radius: 10px; */
+        margin-left: 2rem !important;
+      }
     }
     @media only screen and (max-width: 600px) {
             .left,.right{
@@ -150,8 +157,8 @@
           <thead>
             <tr class="bg-primary text-white">
               <th>अधिकारी </th>
-              <th>अमांदार</th>
-              <th>महिला </th>
+              <th>अंमलदार</th>
+              <th>महिला अंमलदार </th>
               <th>संख्या </th>
             </tr>
           </thead>
@@ -168,93 +175,82 @@
 
    </div>
       <!-- Form Section -->
-      <div class="container mt-5 ">
+      <div class="container mt-5">
         <div class="row w-100">
             <div class="col-md-6 img-section">
-                <img src="../img/police_logo.png" alt="" class=" left_img border rounded bg-primary">
+                <img src="../img/police_logo.png" alt="" class="left_img border rounded bg-primary">
             </div>
-        <div class="card card-form col-md-6 p-4 shadow-sm form-section">
-          <div class="card-header bg-primary text-white text-center">
-            <h3>अधिकाऱ्याची माहिती </h3>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="postName" class="font-weight-bold">पदाचे नाव</label>
-                  <select
-                    id="postName"
-                    class="form-control form-control-lg bg-primary text-white"
-                  >
-                    <option selected>Choose...</option>
-                    <option>अधिकारी</option>
-                    <option>अमांदार</option>
-                  </select>
+            <div class="card card-form col-md-6 p-4 shadow-sm form-section">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 id="policeStationName">अधिकाऱ्याची माहिती </h3>
                 </div>
-
-                <div class="form-group col-md-6">
-                  <label for="name" class="font-weight-bold">अधिकाऱ्याचे नाव</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-lg bg-light"
-                    id="name"
-                    placeholder="Enter Name"
-                  />
+                <div class="card-body">
+                    <form id="officerForm" method="POST" action="./savedata.php " enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="postName" class="font-weight-bold">पदाचे नाव</label>
+                                <select id="postName" class="form-control form-control-lg bg-primary text-white" name="postName">
+                                    <option selected>Choose...</option>
+                                    <option>अपर पोलीस अधिक्षक </option>
+                                    <option>उप-अधिक्षक </option>
+                                    <option>पोलीस निरीक्षक </option>
+                                    <option>सपोनि </option>
+                                    <option>पोउपनि  </option>
+                                    <option>पोलीस अंमलदार  </option>
+                                    <option>महिला पोलीस अंमलदार  </option>
+                                    <option>होमगार्ड </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name" class="font-weight-bold">अधिकाऱ्याचे नाव</label>
+                                <input type="text" class="form-control form-control-lg bg-light" id="name" name="name" placeholder="Enter Name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="mobileNumber" class="font-weight-bold">मोबाईल नंबर:</label>
+                                <input type="text" class="form-control form-control-lg bg-light" id="mobileNumber" name="mobileNumber" placeholder="Enter Mobile Number">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="bno" class="font-weight-bold">बी. एन.</label>
+                                <input type="text" class="form-control form-control-lg bg-light" id="bno" name="bno" placeholder="Enter B.NO.">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="gender" class="font-weight-bold">लिंग </label>
+                                <select id="gender" class="form-control form-control-lg bg-primary text-white" name="gender">
+                                    <option selected>Choose...</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="photo" class="font-weight-bold">फोटो </label>
+                                <input type="file" class="form-control-file" id="photo" name="photo">
+                            </div>
+                        </div>
+    
+                        <!-- Hidden input to hold police station name -->
+                        <input type="hidden" id="policeStation" name="police_station">
+    
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">Save</button>
+                    </form>
                 </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="mobileNumber" class="font-weight-bold"
-                    >मोबाईल नंबर:</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control form-control-lg bg-light"
-                    id="mobileNumber"
-                    placeholder="Enter Mobile Number"
-                  />
-                </div>
-
-                <div class="form-group col-md-6">
-                  <label for="bno" class="font-weight-bold">बी. एन.</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-lg bg-light"
-                    id="bno"
-                    placeholder="Enter B.NO."
-                  />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="gender" class="font-weight-bold">लिंग </label>
-                  <select
-                    id="gender"
-                    class="form-control form-control-lg bg-primary text-white"
-                  >
-                    <option selected>Choose...</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                  </select>
-                </div>
-
-                <div class="form-group col-md-6">
-                  <label for="photo" class="font-weight-bold">फोटो </label>
-                  <input type="file" class="form-control-file" id="photo" />
-                </div>
-              </div>
-
-              <button type="submit" class="btn btn-lg btn-primary btn-block">
-                Save
-              </button>
-            </form>
-          </div>
+            </div>
         </div>
     </div>
-      </div>
-
+      <!-- Form Section SCRIPT -->
+    
+    <script>
+        document.getElementById("officerForm").addEventListener("submit", function() {
+            // Get the text of the heading
+            var policeStationName = document.getElementById("policeStationName").innerText;
+            
+            // Set the hidden input's value
+            document.getElementById("policeStation").value = policeStationName;
+        });
+</script>
       <!-- Card Section -->
       <div class="container mt-5">
         <div class="row">
