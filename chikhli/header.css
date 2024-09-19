@@ -1,0 +1,46 @@
+  /* Main header styles */
+  .header-container {
+    background-color: rgba(0, 0, 128, 0.7);
+    border-bottom: 2px solid #e0e0e0;
+    position: fixed;
+    width: 100%;
+
+}
+
+.govt-logo {
+    height: 130px;
+    padding-left: 20px;
+}
+.police-logo {
+    height: 120px;
+    padding-left: 100px;
+}
+
+.site-logo {
+    height: 40px;
+}
+
+.header-title {
+    font-size: 18px;
+    color: #000;
+}
+
+.nav-link {
+    color: #000;
+    font-weight: bold;
+}
+
+.right-icons .material-icons {
+    font-size: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.right-icons a {
+    color: #000;
+}
+@media only screen and (max-width: 600px) {
+    .left,.right{
+        display: none !important;
+    }
+}

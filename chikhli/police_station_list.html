@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Table with Photo and Checkbox</title>
+    <link rel="stylesheet" href="./header.css">
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Icons CDN -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+/* header */
+     .header-container {
+        position: relative;
+        padding: 20px;
+      }
+
+      .header-title {
+        font-size: 1.2rem;
+      }
+
+        /* General table styling for both desktop and mobile */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        td img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        h2{
+            text-align: center;
+        }
+
+        /* Styling for submit button */
+        .submit-btn {
+            display: block;
+            margin: 0 auto; /* Center the button */
+            padding: 10px 20px;
+           
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        /* Removing mobile-specific adjustments */
+        @media (max-width: 480px) {
+            table, th, td {
+                font-size: 14px;
+                padding: 10px;
+            }
+            td img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+    <script>
+        // Function to collect all selected BN Nos and redirect to the next page
+        function submitBnNos() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const selectedBnNos = [];
+
+            checkboxes.forEach((checkbox) => {
+                selectedBnNos.push(checkbox.getAttribute('data-bn'));
+            });
+
+            if (selectedBnNos.length > 0) {
+                // Join the selected BN Nos as a comma-separated string
+                const bnNosString = selectedBnNos.join(',');
+                // Redirect to the next page with the BN Nos in the query string
+                window.location.href = 'nextpage.html?bnNos=' + bnNosString;
+            } else {
+                alert('Please select at least one checkbox.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header-container mb-2 bg-primary">
+        <div class="container-fluid p-3">
+          <div class="row align-items-center">
+            <!-- Left side: Government logo and title -->
+            <div class="col-md-4 d-flex align-items-center left">
+              <img src="../img/gov_logo.png" alt="Govt Logo" class="govt-logo" />
+              <div>
+                <div class="header-title text-white">महाराष्ट्र शासन</div>
+                <div class="header-title text-white">
+                  Government of Maharashtra
+                </div>
+              </div>
+            </div>
+  
+            <!-- Center: District title -->
+            <div class="col-md-4 text-center center">
+              <div class="header-title font-weight-bold text-white">
+                जिल्हा बुलढाणा
+              </div>
+              <div class="header-title font-weight-bold text-white">
+                DISTRICT BULDHANA
+              </div>
+            </div>
+  
+            <!-- Right side: Icons and language option -->
+            <div class="col-md-4 text-right right-icons right">
+              <img
+                src="../img/police_logo.png"
+                alt="Govt Logo"
+                class="police-logo ms-5"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section>
+
+<h2>पोलिस अमलदार </h2>
+
+<table>
+    <thead class="bg-primary">
+        <tr>
+            <th class="text-white">Sr No.</th>
+            <th class="text-white">BN No.</th>
+            <th class="text-white">Name</th>
+            <th class="text-white">Post</th>
+            <th class="text-white">Photo</th>
+            <th class="text-white">Select</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>12345</td>
+            <td>Vaishnavi</td>
+            <td>Developer</td>
+            <td><img src="photo1.jpg" alt="John Doe"></td>
+            <td><input type="checkbox" data-bn="12345"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>67890</td>
+            <td>Karishma</td>
+            <td>Developer</td>
+            <td><img src="photo2.jpg" alt="Jane Smith"></td>
+            <td><input type="checkbox" data-bn="67890"></td>
+        </tr>
+        <!-- Add more rows as needed -->
+        <tr>
+            <td>3</td>
+            <td>67890</td>
+            <td>Kanchan</td>
+            <td>Developer</td>
+            <td><img src="photo2.jpg" alt="Jane Smith"></td>
+            <td><input type="checkbox" data-bn="67890"></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>67890</td>
+            <td>priti</td>
+            <td>Developer</td>
+            <td><img src="photo2.jpg" alt="Jane Smith"></td>
+            <td><input type="checkbox" data-bn="67890"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+<h2>महिला पोलिस अमलदार </h2>
+
+<table>
+    <thead class="bg-primary">
+        <tr>
+            <th class="text-white">Sr No.</th>
+            <th class="text-white">BN No.</th>
+            <th class="text-white">Name</th>
+            <th class="text-white">Post</th>
+            <th class="text-white">Photo</th>
+            <th class="text-white">Select</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>12345</td>
+            <td>Vaishnavi</td>
+            <td>Developer</td>
+            <td><img src="photo1.jpg" alt="John Doe"></td>
+            <td><input type="checkbox" data-bn="12345"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>67890</td>
+            <td>Karishma</td>
+            <td>Developer</td>
+            <td><img src="photo2.jpg" alt="Jane Smith"></td>
+            <td><input type="checkbox" data-bn="67890"></td>
+        </tr>
+        <!-- Add more rows as needed -->
+        <tr>
+            <td>3</td>
+            <td>67890</td>
+            <td>Kanchan</td>
+            <td>Developer</td>
+            <td><img src="photo2.jpg" alt="Jane Smith"></td>
+            <td><input type="checkbox" data-bn="67890"></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>67890</td>
+            <td>priti</td>
+            <td>Developer</td>
+            <td><img src="photo2.jpg" alt="Jane Smith"></td>
+            <td><input type="checkbox" data-bn="67890"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<h2>होम गार्ड</h2>
+
+<table>
+    <thead class="bg-primary">
+        <tr>
+            <th class="text-white">BN No.</th>
+            <th class="text-white">Sr No.</th>
+            <th class="text-white">Name</th>
+            <th class="text-white">Post</th>
+            <th class="text-white">Photo</th>
+            <th class="text-white">Select</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>12345</td>
+            <td>Vaishnavi</td>
+            <td>Developer</td>
+            <td><img src="photo1.jpg" alt="John Doe"></td>
+            <td><input type="checkbox" data-bn="12345"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>67890</td>
+            <td>Karishma</td>
+            <td>Developer</td>
+            <td><img src="photo2.jpg" alt="Jane Smith"></td>
+            <td><input type="checkbox" data-bn="67890"></td>
+        </tr>
+        <!-- Add more rows as needed -->
+        <tr>
+            <td>3</td>
+            <td>67890</td>
+            <td>Kanchan</td>
+            <td>Developer</td>
+            <td><img src="photo2.jpg" alt="Jane Smith"></td>
+            <td><input type="checkbox" data-bn="67890"></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>67890</td>
+            <td>priti</td>
+            <td>Developer</td>
+            <td><img src="photo2.jpg" alt="Jane Smith"></td>
+            <td><input type="checkbox" data-bn="67890"></td>
+        </tr>
+    </tbody>
+</table>
+<!-- Submit button -->
+<button class="submit-btn btm btn-primary onclick="submitBnNos()">Submit</button>
+</section>
+</body>
+</html>
