@@ -59,7 +59,12 @@
       .card-header small {
         font-weight: normal;
       }
-
+        input{
+          height: 30px !important;
+        }
+        select{
+          height: 50px;
+        }
       .card-body {
         display: flex;
       }
@@ -82,6 +87,21 @@
         .form-section {
         /* border-radius: 10px; */
         margin-left: 2rem !important;
+      }
+      #policeStationName{
+        font-size: 16px !important;
+        font-weight: bold;
+      }
+      .header-container{
+        height: 5rem;
+        margin-top: -1rem;
+        padding:0  ;
+      }
+      .card-header{
+        padding-bottom: 0;
+      }
+      .table td, .table th{
+        padding: 0;
       }
     }
     @media only screen and (max-width: 600px) {
@@ -127,10 +147,10 @@
           <!-- Center: District title -->
           <div class="col-md-4 text-center center">
             <div class="header-title font-weight-bold text-white">
-              जिल्हा बुलढाणा
+              जिल्हा बुलढाणा 
             </div>
             <div class="header-title font-weight-bold text-white">
-              DISTRICT BULDHANA
+           (चिखली पोलिस)
             </div>
           </div>
 
@@ -148,8 +168,8 @@
 
     <!-- Main Content -->
     <div class="container">
-      <h1 class="mt-4">चिखली  पोलिस  स्टेशन </h1>
-      <h4 class="subheading">तैनात संख्या बळ: 23</h4>
+      <!-- <h1 class="mt-4">चिखली  पोलिस  स्टेशन </h1> -->
+      <h4 class="subheading mt-4">तैनात संख्या बळ: 23</h4>
 
       <!-- Table Section -->
       <div class="table-container">
@@ -189,7 +209,7 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="postName" class="font-weight-bold">पदाचे नाव</label>
-                                <select id="postName" class="form-control form-control-lg bg-primary text-white" name="postName">
+                                <select id="postName" class="form-control bg-primary text-white" name="postName">
                                     <option selected>Choose...</option>
                                     <option>अपर पोलीस अधिक्षक </option>
                                     <option>उप-अधिक्षक </option>
@@ -219,7 +239,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="gender" class="font-weight-bold">लिंग </label>
-                                <select id="gender" class="form-control form-control-lg bg-primary text-white" name="gender">
+                                <select id="gender" class="form-control  bg-primary text-white" name="gender">
                                     <option selected>Choose...</option>
                                     <option>Male</option>
                                     <option>Female</option>
