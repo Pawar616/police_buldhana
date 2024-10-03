@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="./header.css">
+
+<style>
+    /* header */
+         .header-container {
+            position: relative;
+            padding: 20px;
+          }
+    
+          .header-title {
+            font-size: 1.2rem;
+          }
+    
+            /* General table styling for both desktop and mobile */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+            table, th, td {
+                border: 1px solid #ddd;
+            }
+            th, td {
+                padding: 12px;
+                text-align: center;
+            }
+            td img {
+                width: 50px;
+                height: 50px;
+                object-fit: cover;
+                border-radius: 4px;
+            }
+            h2{
+                text-align: center;
+            }
+    
+            /* Styling for submit button */
+            .submit-btn {
+                display: block;
+                margin: 0 auto; /* Center the button */
+                padding: 10px 20px;
+               
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            .submit-btn:hover {
+                background-color: #45a049; /* Darker green on hover */
+            }
+    
+            /* Removing mobile-specific adjustments */
+            @media (max-width: 480px) {
+                table, th, td {
+                    font-size: 14px;
+                    padding: 10px;
+                }
+                td img {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+    
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+        </style>
+  
+  <script>
+  
+  </script>
+
+</head>
+<body>
+    <header class="header-container mb-2 bg-primary">
+        <div class="container-fluid p-3">
+          <div class="row align-items-center">
+            <!-- Left side: Government logo and title -->
+            <div class="col-md-4 d-flex align-items-center left">
+              <img src="../img/gov_logo.png" alt="Govt Logo" class="govt-logo" />
+              <div>
+                <div class="header-title text-white">महाराष्ट्र शासन</div>
+                <div class="header-title text-white">
+                  Government of Maharashtra
+                </div>
+              </div>
+            </div>
+  
+            <!-- Center: District title -->
+            <div class="col-md-4 text-center center">
+              <div class="header-title font-weight-bold text-white">
+                जिल्हा बुलढाणा
+              </div>
+              <div class="header-title font-weight-bold text-white">
+                DISTRICT BULDHANA
+              </div>
+            </div>
+  
+            <!-- Right side: Icons and language option -->
+            <div class="col-md-4 text-right right-icons right">
+              <img
+                src="../img/police_logo.png"
+                alt="Govt Logo"
+                class="police-logo ms-5"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+<div class="container row mt-3">
+   <div class="col-md-4 mb-2">
+      <button type="button" class="btn btn-primary w-100" onclick="toggleTable()"> सर्व पोलीस कर्मचारी </button>
+   </div>
+   <div class="col-md-4 mb-2">
+      <button type="button" class="btn btn-primary w-100">सर्व पोलीस अधिकारी </button>
+   </div>
+   <div class="col-md-4 mb-2">
+      <select class="form-select btn btn-primary w-100" aria-label="Default select example">
+        <option selected>पोलीस स्टेशन निहाय</option>
+        <option value="one">One</option>
+        <option value="two">Two</option>
+        <option value="three">Three</option>
+      </select>
+   </div>
+</div>
+
+<!-- Initially hidden h3 -->
+<h3 id="policeHeader" class="text-center mt-3">  तैनात संख्या बळ </h3>
+
+<!-- Initially hidden table -->
+<table>
+    <thead class="bg-primary w-75 mx-auto">
+        <tr>
+            <th class="text-white">Sr No.</th>
+            <th class="text-white">BN No.</th>
+            <th class="text-white">Name</th>
+            <th class="text-white">Post</th>
+            <th class="text-white">Photo</th>
+            <th class="text-white">Select</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>12345</td>
+            <td>Vaishnavi</td>
+            <td>Developer</td>
+            <td><img src="photo1.jpg" alt="John Doe"></td>
+            <td><input type="checkbox" data-bn="12345"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>67890</td>
+            <td>Karishma</td>
+            <td>Developer</td>
+            <td><img src="photo2.jpg" alt="Jane Smith"></td>
+            <td><input type="checkbox" data-bn="67890"></td>
+        </tr>
+        <!-- Add more rows as needed -->
+        <tr>
+            <td>3</td>
+            <td>67890</td>
+            <td>Kanchan</td>
+            <td>Developer</td>
+            <td><img src="photo2.jpg" alt="Jane Smith"></td>
+            <td><input type="checkbox" data-bn="67890"></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>67890</td>
+            <td>priti</td>
+            <td>Developer</td>
+            <td><img src="photo2.jpg" alt="Jane Smith"></td>
+            <td><input type="checkbox" data-bn="67890"></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
