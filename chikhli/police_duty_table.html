@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Officer Duty Table</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./header.css" />
+    <style>
+         /* Custom styling */
+      .header-container {
+        position: relative;
+        padding: 20px;
+      }
+
+      .header-title {
+        font-size: 1.2rem;
+      }
+
+      h1,
+      h4 {
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .subheading {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .custom-table th,
+      .custom-table td {
+        text-align: center;
+      }
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .place-section {
+            margin-top: 20px;
+        }
+
+        .officer-table {
+            margin-top: 30px;
+        }
+
+        /* Hide original officer list and non-printable elements when printing */
+        @media print {
+            header{
+                display: none;
+            }
+            .hide{
+                display: none;
+            }
+            #officerTable, #addPlaceBtn, #placeInput, #printBtn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-container bg-primary">
+        <div class="container-fluid p-3">
+          <div class="row align-items-center">
+            <!-- Left side: Government logo and title -->
+            <div class="col-md-4 d-flex align-items-center left">
+              <img src="./gov_logo.png" alt="Govt Logo" class="govt-logo" />
+              <div>
+                <div class="header-title text-white">महाराष्ट्र शासन</div>
+                <div class="header-title text-white">
+                  Government of Maharashtra
+                </div>
+              </div>
+            </div>
+  
+            <!-- Center: District title -->
+            <div class="col-md-4 text-center center">
+              <div class="header-title  text-white">
+                <strong>जिल्हा बुलढाणा</strong> 
+              </div>
+              <div class="header-title text-white">
+                <strong>(चिखली पोलिस)</strong>
+             
+              </div>
+            </div>
+  
+            <!-- Right side: Icons and language option -->
+            <div class="col-md-4 text-right right-icons right">
+              <img
+                src="./police_logo.png"
+                alt="Govt Logo"
+                class="police-logo ms-5"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+<div class="container mt-5">
+    <h2 class="mb-4"><strong>पोलीस बंदोबस्त चिखली</strong></h2>
+
+    <!-- Table for displaying officers -->
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered" id="officerTable">
+            <thead class="table-dark">
+            <tr>
+                <th class="bg-primary text-white border border-2 border-dark">Sr No</th>
+                <th class="bg-primary text-white border border-2 border-dark">BN Number</th>
+                <th class="bg-primary text-white border border-2 border-dark">Name</th>
+                <th class="bg-primary text-white border border-2 border-dark">Post Name</th>
+                <th class="bg-primary text-white border border-2 border-dark">Mobile Number</th>
+                <th class="bg-primary text-white border border-2 border-dark">Gender</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Officer rows will be appended here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section to add new place -->
+    <div class="place-section">
+        <h4 class="hide">बंदोबस्ताचे  ठिकाण </h4>
+        <div class="input-group mb-3">
+            <input type="text" id="placeInput" class="form-control" placeholder="Enter place name">
+            <button id="addPlaceBtn" class="btn btn-primary">Add Place</button>
+        </div>
+    </div>
+
+    <!-- Section to display added places and assign officers -->
+    <div id="placesContainer"></div>
+
+    <div class="mt-4">
+        <button id="printBtn" class="btn btn-secondary">Print</button>
+    </div>
+
+</div>
+
+<script>
+    let officers = [];
+    let assignedOfficers = new Set();
+
+    // Fetch data from Google Sheets
+    async function fetchData() {
+        fetch("https://script.google.com/macros/s/AKfycbyvOQcDSguADiyN5XM2SwvOrrkgr1_DfOlnUrIXtXOYAIvIr3NV60JqDzEyLvApQ7mneA/exec")
+            .then(response => response.json())
+            .then(data => {
+                officers = data;
+                populateOfficerTable(data);
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    }
+
+    // Populate officers' data into the table
+    function populateOfficerTable(officers) {
+        const tableBody = document.querySelector('#officerTable tbody');
+        tableBody.innerHTML = ''; // Clear the table first
+        officers.forEach((officer, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="border border-2 border-dark">${index + 1}</td>
+                <td class="border border-2 border-dark">${officer.bno}</td>
+                <td class="border border-2 border-dark">${officer.name}</td>
+                <td class="border border-2 border-dark">${officer.postName}</td>
+                <td class="border border-2 border-dark">${officer.mobileNumber}</td>
+                <td class="border border-2 border-dark">${officer.gender}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Add new place section with dropdown to assign officers
+    document.getElementById('addPlaceBtn').addEventListener('click', function () {
+        const placeName = document.getElementById('placeInput').value.trim();
+        if (placeName === '') return;
+
+        const placeSection = document.createElement('div');
+        placeSection.className = 'mb-4';
+
+        const placeHeading = document.createElement('h5');
+        placeHeading.innerText = placeName;
+
+        // Create a table for officers under the place
+        const officerTable = document.createElement('table');
+        officerTable.className = 'table table-striped table-bordered';
+        officerTable.innerHTML = `
+            <thead class="table-dark">
+                <tr>
+                    <th class="bg-primary text-white border border-2 border-dark">BN Number</th>
+                    <th class="bg-primary text-white border border-2 border-dark">Name</th>
+                    <th class="bg-primary text-white border border-2 border-dark">Post Name</th>
+                    <th class="bg-primary text-white border border-2 border-dark">Mobile Number</th>
+                    <th class="bg-primary text-white border border-2 border-dark">Gender</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        `;
+
+        const officerSelect = document.createElement('select');
+        officerSelect.className = 'form-select mb-2 hide';
+        officerSelect.innerHTML = '<option value="">Select BN Number</option>';
+
+        officers.forEach(officer => {
+            if (!assignedOfficers.has(String(officer.bno))) {
+                const option = document.createElement('option');
+                option.value = officer.bno;
+                option.innerText = officer.bno;
+                officerSelect.appendChild(option);
+            }
+        });
+
+        const addOfficerBtn = document.createElement('button');
+        addOfficerBtn.className = 'btn btn-primary mb-3 hide';
+        addOfficerBtn.innerText = 'Add Officer';
+
+        placeSection.appendChild(placeHeading);
+        placeSection.appendChild(officerSelect);
+        placeSection.appendChild(addOfficerBtn);
+        placeSection.appendChild(officerTable);
+
+        document.getElementById('placesContainer').appendChild(placeSection);
+
+        // Handle adding an officer to the place
+        addOfficerBtn.addEventListener('click', function () {
+            const selectedBN = officerSelect.value.trim(); // Ensure it's a string
+            if (selectedBN === '') return;
+
+            const officer = officers.find(o => String(o.bno) === selectedBN);
+            if (!officer) return;
+
+            // Remove from officer list and add to assigned list
+            assignedOfficers.add(String(selectedBN));
+
+            // Add a new row for the officer in the place's table
+            const tableBody = officerTable.querySelector('tbody');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class=" border border-2 border-dark">${officer.bno}</td>
+                <td class=" border border-2 border-dark">${officer.name}</td>
+                <td class=" border border-2 border-dark">${officer.postName}</td>
+                <td class=" border border-2 border-dark">${officer.mobileNumber}</td>
+                <td class=" border border-2 border-dark">${officer.gender}</td>
+            `;
+            tableBody.appendChild(row);
+
+            // Remove the officer from the dropdown
+            const optionToRemove = officerSelect.querySelector(`option[value="${selectedBN}"]`);
+            optionToRemove.remove();
+        });
+    });
+
+     // Handle Print button click
+     document.getElementById('printBtn').addEventListener('click', function() {
+        window.print();
+    });
+
+    // Fetch the officer data on page load
+    document.addEventListener("DOMContentLoaded", fetchData);
+</script>
+</body>
+</html>
