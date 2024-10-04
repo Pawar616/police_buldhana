@@ -4,190 +4,175 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-  rel="stylesheet"
-/>
-<link rel="stylesheet" href="./header.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="./header.css">
+  <style>
+    .header-container {
+        position: relative;
+        padding: 20px;
+      }
 
-<style>
-    /* header */
-         .header-container {
-            position: relative;
-            padding: 20px;
-          }
-    
-          .header-title {
-            font-size: 1.2rem;
-          }
-    
-            /* General table styling for both desktop and mobile */
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-bottom: 20px;
-            }
-            table, th, td {
-                border: 1px solid #ddd;
-            }
-            th, td {
-                padding: 12px;
-                text-align: center;
-            }
-            td img {
-                width: 50px;
-                height: 50px;
-                object-fit: cover;
-                border-radius: 4px;
-            }
-            h2{
-                text-align: center;
-            }
-    
-            /* Styling for submit button */
-            .submit-btn {
-                display: block;
-                margin: 0 auto; /* Center the button */
-                padding: 10px 20px;
-               
-                color: white;
-                border: none;
-                border-radius: 5px;
-                font-size: 16px;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-            }
-            .submit-btn:hover {
-                background-color: #45a049; /* Darker green on hover */
-            }
-    
-            /* Removing mobile-specific adjustments */
-            @media (max-width: 480px) {
-                table, th, td {
-                    font-size: 14px;
-                    padding: 10px;
-                }
-                td img {
-                    width: 50px;
-                    height: 50px;
-                }
-            }
-    
-            body {
-                font-family: Arial, sans-serif;
-                margin: 20px;
-            }
-        </style>
-  
-  <script>
-  
-  </script>
+      .header-title {
+        font-size: 1.2rem;
+      }
 
+    /* Same styles as before */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    h2 {
+        text-align: center;
+    }
+    table, th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+    }
+    td img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+    .submit-btn {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 20px;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .submit-btn:hover {
+        background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-    <header class="header-container mb-2 bg-primary">
-        <div class="container-fluid p-3">
-          <div class="row align-items-center">
-            <!-- Left side: Government logo and title -->
-            <div class="col-md-4 d-flex align-items-center left">
-              <img src="../img/gov_logo.png" alt="Govt Logo" class="govt-logo" />
-              <div>
-                <div class="header-title text-white">महाराष्ट्र शासन</div>
-                <div class="header-title text-white">
-                  Government of Maharashtra
-                </div>
-              </div>
-            </div>
-  
-            <!-- Center: District title -->
-            <div class="col-md-4 text-center center">
-              <div class="header-title font-weight-bold text-white">
-                जिल्हा बुलढाणा
-              </div>
-              <div class="header-title font-weight-bold text-white">
-                DISTRICT BULDHANA
-              </div>
-            </div>
-  
-            <!-- Right side: Icons and language option -->
-            <div class="col-md-4 text-right right-icons right">
-              <img
-                src="../img/police_logo.png"
-                alt="Govt Logo"
-                class="police-logo ms-5"
-              />
-            </div>
+  <header class="header-container mb-2 bg-primary">
+    <div class="container-fluid p-3">
+      <div class="row align-items-center">
+        <div class="col-md-4 d-flex align-items-center">
+          <img src="./gov_logo.png" alt="Govt Logo" class="govt-logo" />
+          <div>
+            <div class="header-title text-white">महाराष्ट्र शासन</div>
+            <div class="header-title text-white">Government of Maharashtra</div>
           </div>
         </div>
-      </header>
-<div class="container row mt-3">
-   <div class="col-md-4 mb-2">
-      <button type="button" class="btn btn-primary w-100" onclick="toggleTable()"> सर्व पोलीस कर्मचारी </button>
-   </div>
-   <div class="col-md-4 mb-2">
-      <button type="button" class="btn btn-primary w-100">सर्व पोलीस अधिकारी </button>
-   </div>
-   <div class="col-md-4 mb-2">
-      <select class="form-select btn btn-primary w-100" aria-label="Default select example">
-        <option selected>पोलीस स्टेशन निहाय</option>
-        <option value="one">One</option>
-        <option value="two">Two</option>
-        <option value="three">Three</option>
-      </select>
-   </div>
-</div>
+        <div class="col-md-4 text-center">
+          <div class="header-title font-weight-bold text-white">जिल्हा बुलढाणा</div>
+          <div class="header-title font-weight-bold text-white">DISTRICT BULDHANA</div>
+        </div>
+        <div class="col-md-4 text-right">
+          <img src="./police_logo.png" alt="Police Logo" class="police-logo" />
+        </div>
+      </div>
+    </div>
+  </header>
 
-<!-- Initially hidden h3 -->
-<h3 id="policeHeader" class="text-center mt-3">  तैनात संख्या बळ </h3>
+  <div class="container mt-5">
+    <h2 class="mb-4">Mastersheet of BULDHANA Police</h2>
 
-<!-- Initially hidden table -->
-<table>
-    <thead class="bg-primary w-75 mx-auto">
-        <tr>
-            <th class="text-white">Sr No.</th>
-            <th class="text-white">BN No.</th>
-            <th class="text-white">Name</th>
-            <th class="text-white">Post</th>
-            <th class="text-white">Photo</th>
-            <th class="text-white">Select</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>12345</td>
-            <td>Vaishnavi</td>
-            <td>Developer</td>
-            <td><img src="photo1.jpg" alt="John Doe"></td>
-            <td><input type="checkbox" data-bn="12345"></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>67890</td>
-            <td>Karishma</td>
-            <td>Developer</td>
-            <td><img src="photo2.jpg" alt="Jane Smith"></td>
-            <td><input type="checkbox" data-bn="67890"></td>
-        </tr>
-        <!-- Add more rows as needed -->
-        <tr>
-            <td>3</td>
-            <td>67890</td>
-            <td>Kanchan</td>
-            <td>Developer</td>
-            <td><img src="photo2.jpg" alt="Jane Smith"></td>
-            <td><input type="checkbox" data-bn="67890"></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>67890</td>
-            <td>priti</td>
-            <td>Developer</td>
-            <td><img src="photo2.jpg" alt="Jane Smith"></td>
-            <td><input type="checkbox" data-bn="67890"></td>
-        </tr>
-    </tbody>
-</table>
+    <!-- Dropdown for selecting post -->
+    <div class="mb-4">
+      <div class="form-group">
+        <label for="postSelect">Select Post:</label>
+        <select class="form-control" id="postSelect">
+          <option value="">All</option>
+          <option value="अपर-पोलीस-अधिक्षक">अपर-पोलीस-अधिक्षक</option>
+          <option value="उप-अधिक्षक">उप-अधिक्षक</option>
+          <option value="पोलीस-निरीक्षक">पोलीस-निरीक्षक</option>
+          <option value="सपोनि">सपोनि</option>
+          <option value="पोउपनि">पोउपनि</option>
+          <option value="पोलीस-अंमलदार">पोलीस-अंमलदार</option>
+          <option value="महिला-पोलीस-अंमलदार">महिला-पोलीस-अंमलदार</option>
+          <option value="होमगार्ड">होमगार्ड</option>
+        </select>
+      </div>
+      <button id="searchBtn" class="btn btn-primary">Search</button>
+    </div>
 
+    <!-- Table for displaying officers (original list) -->
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered" id="officerTable">
+        <thead class="table-dark">
+          <tr>
+            <th class="bg-primary text-white border border-2 border-dark">Sr No</th>
+            <th class="bg-primary text-white border border-2 border-dark">BN Number</th>
+            <th class="bg-primary text-white border border-2 border-dark">Name</th>
+            <th class="bg-primary text-white border border-2 border-dark">Post Name</th>
+            <th class="bg-primary text-white border border-2 border-dark">Mobile Number</th>
+            <th class="bg-primary text-white border border-2 border-dark">Gender</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Officer rows will be appended here -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Print Button -->
+    <div class="mt-4">
+      <button id="printBtn" class="btn btn-secondary">Print</button>
+    </div>
+  </div>
+
+  <script>
+    let officers = [];
+
+    // Fetch data from Google Sheets
+    async function fetchData() {
+      fetch("https://script.google.com/macros/s/AKfycbyvOQcDSguADiyN5XM2SwvOrrkgr1_DfOlnUrIXtXOYAIvIr3NV60JqDzEyLvApQ7mneA/exec")
+        .then(response => response.json())
+        .then(data => {
+          officers = data;
+          populateOfficerTable(data); // Initially populate the full table
+        })
+        .catch(error => console.error("Error fetching data:", error));
+    }
+
+    // Populate officers' data into the table
+    function populateOfficerTable(officers) {
+      const tableBody = document.querySelector('#officerTable tbody');
+      tableBody.innerHTML = ''; // Clear the table first
+      officers.forEach((officer, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td class="border border-2 border-dark">${index + 1}</td>
+          <td class="border border-2 border-dark">${officer.bno}</td>
+          <td class="border border-2 border-dark">${officer.name}</td>
+          <td class="border border-2 border-dark">${officer.postName}</td>
+          <td class="border border-2 border-dark">${officer.mobileNumber}</td>
+          <td class="border border-2 border-dark">${officer.gender}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Filter officers by selected post
+    function filterByPost(post) {
+      const filteredOfficers = officers.filter(officer => {
+        return post === "" || officer.postName === post; // Show all if no post selected
+      });
+      populateOfficerTable(filteredOfficers);
+    }
+
+    // Handle Search button click
+    document.getElementById('searchBtn').addEventListener('click', function() {
+      const selectedPost = document.getElementById('postSelect').value;
+      filterByPost(selectedPost);
+    });
+
+    // Handle Print button click
+    document.getElementById('printBtn').addEventListener('click', function() {
+      window.print();
+    });
+
+    // Fetch the officer data on page load
+    document.addEventListener("DOMContentLoaded", fetchData);
+  </script>
 </body>
 </html>
