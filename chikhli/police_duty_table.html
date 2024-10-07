@@ -56,6 +56,64 @@
                 display: none;
             }
         }
+
+
+        <style>
+    .table-container {
+        margin-bottom: 20px;
+    }
+    
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 auto; /* Centering the table */
+    }
+
+    .custom-table th,
+    .custom-table td {
+        padding: 12px; /* Adjust padding for better spacing */
+        text-align: center; /* Center text for all cells */
+    }
+
+    .custom-table th {
+        background-color: #007bff; /* Bootstrap primary color */
+        color: white; /* Text color for headers */
+        border-bottom: 2px solid #0056b3; /* Darker border for headers */
+    }
+
+    .custom-table tr {
+        border-bottom: 1px solid #dee2e6; /* Light border for rows */
+    }
+
+    .custom-table td {
+        background-color: #f8f9fa; /* Light background for table cells */
+    }
+
+    .custom-table td input {
+        width: 100%; /* Make inputs fill the cell */
+        border: none; /* Remove borders from inputs */
+        text-align: center; /* Center text in inputs */
+    }
+
+    /* Print Styles */
+    @media print {
+        body {
+            -webkit-print-color-adjust: exact; /* Ensure colors print correctly */
+            color-adjust: exact;
+        }
+        .table-container {
+            margin: 0; /* Remove margins when printing */
+        }
+        .custom-table th,
+        .custom-table td {
+            border: 1px solid black; /* Ensure borders are visible when printing */
+        }
+        .custom-table {
+            page-break-inside: avoid; /* Avoid breaking the table across pages */
+        }
+    }
+</style>
+
     </style>
 </head>
 <body>
@@ -97,6 +155,35 @@
       </header>
 <div class="container mt-5">
     <h2 class="mb-4"><strong>पोलीस बंदोबस्त चिखली</strong></h2>
+    <h5 id="totalPolice" class="mb-4"></h5>
+    <!-- Table Section -->
+<div class="table-container mb-4">
+  <table class="table table-bordered custom-table">
+      <thead>
+          <tr class="bg-primary text-white">
+              <th class="border border-2 border-dark">होमगार्ड</th>
+              <th class="border border-2 border-dark">महिला-पोलीस-अंमलदार</th>
+              <th class="border border-2 border-dark">पोलीस-अंमलदार</th>
+              <th class="border border-2 border-dark">पोउपनि</th>
+              <th class="border border-2 border-dark">सपोनि</th>
+              <th class="border border-2 border-dark">उप-अधिक्षक</th>
+              <th class="border border-2 border-dark">अपर-पोलीस-अधिक्षक</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td class="border border-2 border-dark"><input type="number" id="homeguardLimit" class="border-0" min="0" value="0"></td>
+              <td class="border border-2 border-dark"><input type="number" id="femaleConstableLimit" class="border-0" min="0" value="0"></td>
+              <td class="border border-2 border-dark"><input type="number" id="constableLimit" class="border-0" min="0" value="0"></td>
+              <td class="border border-2 border-dark"><input type="number" id="piLimit" class="border-0" min="0" value="0"></td>
+              <td class="border border-2 border-dark"><input type="number" id="spiLimit" class="border-0" min="0" value="0"></td>
+              <td class="border border-2 border-dark"><input type="number" id="dyspLimit" class="border-0" min="0" value="0"></td>
+              <td class="border border-2 border-dark"><input type="number" id="addlSpLimit" class="border-0" min="0" value="0"></td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
 
     <!-- Table for displaying officers -->
     <div class="table-responsive">
@@ -151,22 +238,27 @@
     }
 
     // Populate officers' data into the table
-    function populateOfficerTable(officers) {
-        const tableBody = document.querySelector('#officerTable tbody');
-        tableBody.innerHTML = ''; // Clear the table first
-        officers.forEach((officer, index) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td class="border border-2 border-dark">${index + 1}</td>
-                <td class="border border-2 border-dark">${officer.bno}</td>
-                <td class="border border-2 border-dark">${officer.name}</td>
-                <td class="border border-2 border-dark">${officer.postName}</td>
-                <td class="border border-2 border-dark">${officer.mobileNumber}</td>
-                <td class="border border-2 border-dark">${officer.gender}</td>
-            `;
-            tableBody.appendChild(row);
-        });
-    }
+function populateOfficerTable(officers) {
+    const tableBody = document.querySelector('#officerTable tbody');
+    tableBody.innerHTML = ''; // Clear the table first
+    officers.forEach((officer, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="border border-2 border-dark">${index + 1}</td>
+            <td class="border border-2 border-dark">${officer.bno}</td>
+            <td class="border border-2 border-dark">${officer.name}</td>
+            <td class="border border-2 border-dark">${officer.postName}</td>
+            <td class="border border-2 border-dark">${officer.mobileNumber}</td>
+            <td class="border border-2 border-dark">${officer.gender}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    // Update the total number of officers
+    const totalPolice = officers.length;
+    document.getElementById('totalPolice').innerText = `पोलीस संख्या बाळ: ${totalPolice}`;
+}
+
 
     // Add new place section with dropdown to assign officers
     document.getElementById('addPlaceBtn').addEventListener('click', function () {
