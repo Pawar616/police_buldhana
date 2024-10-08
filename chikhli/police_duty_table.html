@@ -57,8 +57,10 @@
             }
         }
 
+        .table-responsive{
+          display: none;
+        }
 
-        <style>
     .table-container {
         margin-bottom: 20px;
     }
@@ -157,52 +159,35 @@
     <h2 class="mb-4"><strong>पोलीस बंदोबस्त चिखली</strong></h2>
     <h5 id="totalPolice" class="mb-4"></h5>
     <!-- Table Section -->
-<div class="table-container mb-4">
-  <table class="table table-bordered custom-table">
-      <thead>
-          <tr class="bg-primary text-white">
-              <th class="border border-2 border-dark">होमगार्ड</th>
-              <th class="border border-2 border-dark">महिला-पोलीस-अंमलदार</th>
-              <th class="border border-2 border-dark">पोलीस-अंमलदार</th>
-              <th class="border border-2 border-dark">पोउपनि</th>
-              <th class="border border-2 border-dark">सपोनि</th>
-              <th class="border border-2 border-dark">उप-अधिक्षक</th>
-              <th class="border border-2 border-dark">अपर-पोलीस-अधिक्षक</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td class="border border-2 border-dark"><input type="number" id="homeguardLimit" class="border-0" min="0" value="0"></td>
-              <td class="border border-2 border-dark"><input type="number" id="femaleConstableLimit" class="border-0" min="0" value="0"></td>
-              <td class="border border-2 border-dark"><input type="number" id="constableLimit" class="border-0" min="0" value="0"></td>
-              <td class="border border-2 border-dark"><input type="number" id="piLimit" class="border-0" min="0" value="0"></td>
-              <td class="border border-2 border-dark"><input type="number" id="spiLimit" class="border-0" min="0" value="0"></td>
-              <td class="border border-2 border-dark"><input type="number" id="dyspLimit" class="border-0" min="0" value="0"></td>
-              <td class="border border-2 border-dark"><input type="number" id="addlSpLimit" class="border-0" min="0" value="0"></td>
-          </tr>
-      </tbody>
-  </table>
-</div>
-
-
-    <!-- Table for displaying officers -->
-    <div class="table-responsive">
-        <table class="table table-striped table-bordered" id="officerTable">
-            <thead class="table-dark">
-            <tr>
-                <th class="bg-primary text-white border border-2 border-dark">Sr No</th>
-                <th class="bg-primary text-white border border-2 border-dark">BN Number</th>
-                <th class="bg-primary text-white border border-2 border-dark">Name</th>
-                <th class="bg-primary text-white border border-2 border-dark">Post Name</th>
-                <th class="bg-primary text-white border border-2 border-dark">Mobile Number</th>
-                <th class="bg-primary text-white border border-2 border-dark">Gender</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Officer rows will be appended here -->
-            </tbody>
-        </table>
+    <div class="table-container mb-4">
+      <table class="table table-bordered custom-table">
+          <thead>
+              <tr class="bg-primary text-white">
+                  <th class="border border-2 border-dark">होमगार्ड</th>
+                  <th class="border border-2 border-dark">महिला-पोलीस-अंमलदार</th>
+                  <th class="border border-2 border-dark">पोलीस-अंमलदार</th>
+                  <th class="border border-2 border-dark">पोउपनि</th>
+                  <th class="border border-2 border-dark">सपोनि</th>
+                  <th class="border border-2 border-dark">उप-अधिक्षक</th>
+                  <th class="border border-2 border-dark">अपर-पोलीस-अधिक्षक</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="border border-2 border-dark"><input type="number" id="homeguardLimit" class="border-0" min="0" value="0"></td>
+                  <td class="border border-2 border-dark"><input type="number" id="femaleConstableLimit" class="border-0" min="0" value="0"></td>
+                  <td class="border border-2 border-dark"><input type="number" id="constableLimit" class="border-0" min="0" value="0"></td>
+                  <td class="border border-2 border-dark"><input type="number" id="piLimit" class="border-0" min="0" value="0"></td>
+                  <td class="border border-2 border-dark"><input type="number" id="spiLimit" class="border-0" min="0" value="0"></td>
+                  <td class="border border-2 border-dark"><input type="number" id="dyspLimit" class="border-0" min="0" value="0"></td>
+                  <td class="border border-2 border-dark"><input type="number" id="addlSpLimit" class="border-0" min="0" value="0"></td>
+              </tr>
+          </tbody>
+      </table>
     </div>
+
+
+   
 
     <!-- Section to add new place -->
     <div class="place-section">
@@ -219,6 +204,40 @@
     <div class="mt-4">
         <button id="printBtn" class="btn btn-secondary">Print</button>
     </div>
+    <br>
+
+    <div class="mt-4">
+      <button id="" class="btn btn-primary" onclick="myFunction()">Show Table</button>
+  </div>
+  <br>
+    <script>
+      function myFunction() {
+  var x = document.getElementById("table_show");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+    </script>
+     <!-- Table for displaying officers -->
+     <div class="table-responsive" id="table_show">
+      <table class="table table-striped table-bordered" id="officerTable">
+          <thead class="table-dark">
+          <tr>
+              <th class="bg-primary text-white border border-2 border-dark">Sr No</th>
+              <th class="bg-primary text-white border border-2 border-dark">BN Number</th>
+              <th class="bg-primary text-white border border-2 border-dark">Name</th>
+              <th class="bg-primary text-white border border-2 border-dark">Post Name</th>
+              <th class="bg-primary text-white border border-2 border-dark">Mobile Number</th>
+              <th class="bg-primary text-white border border-2 border-dark">Gender</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!-- Officer rows will be appended here -->
+          </tbody>
+      </table>
+  </div>
 
 </div>
 
