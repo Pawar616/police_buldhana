@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Table with Row Addition</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./header.css" />
+
+  <style>
+     .header-container {
+          position: relative;
+          padding: 20px;
+        }
+
+        .header-title {
+          font-size: 1.2rem;
+        }
+    .add-table {
+      margin-top: 10px;
+    }
+    .table-container {
+      overflow-x: auto; /* Enable horizontal scroll */
+    }
+  </style>
+</head>
+<body>
+    <header class="header-container bg-primary">
+        <div class="container-fluid p-3">
+          <div class="row align-items-center">
+            <!-- Left side: Government logo and title -->
+            <div class="col-md-4 d-flex align-items-center left">
+              <img src="./gov_logo.png" alt="Govt Logo" class="govt-logo" />
+              <div>
+                <div class="header-title text-white">महाराष्ट्र शासन</div>
+                <div class="header-title text-white">
+                  Government of Maharashtra
+                </div>
+              </div>
+            </div>
+  
+            <!-- Center: District title -->
+            <div class="col-md-4 text-center center">
+              <div class="header-title  text-white">
+                <strong> बुलढाणा पोलिस</strong> 
+              </div>
+              <div class="header-title text-white">
+                <strong></strong>
+             
+              </div>
+            </div>
+  
+            <!-- Right side: Icons and language option -->
+            <div class="col-md-4 text-right right-icons right">
+              <img
+                src="./police_logo.png"
+                alt="Govt Logo"
+                class="police-logo ms-5"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+  <div class="container mt-5">
+    <h2 class="mb-4"> पोलीस बंदोबस्त </h2>
+      <form>
+          <div class="form-group row">
+              <label for="policeStation" class="col-sm-3 col-form-label">पोलीस स्टेशन</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" id="policeStation" placeholder="पोलीस स्टेशन प्रविष्ट करा">
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <label for="bandobastName" class="col-sm-3 col-form-label">बंदोबस्त नाव</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" id="bandobastName" placeholder="बंदोबस्ताचे नाव प्रविष्ट करा">
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <label for="location" class="col-sm-3 col-form-label">बंदोबस्त ठिकाण</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" id="location" placeholder="ठिकाण प्रविष्ट करा">
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <label for="date" class="col-sm-3 col-form-label">बंदोबस्त दिनांक</label>
+              <div class="col-sm-9">
+                  <input type="date" class="form-control" id="date">
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <label for="practice" class="col-sm-3 col-form-label">बंदोबस्त सराव</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" id="practice" placeholder="सराव प्रविष्ट करा">
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <label for="time" class="col-sm-3 col-form-label">बंदोबस्त वेळ</label>
+              <div class="col-sm-9">
+                  <input type="time" class="form-control" id="time">
+              </div>
+          </div>
+
+          <!-- <div class="form-group row">
+              <div class="col-sm-9 offset-sm-3">
+                  <button type="submit" class="btn btn-primary">सबमिट करा</button>
+              </div>
+          </div> -->
+      </form>
+    <hr>
+    <h2>बंदोबस्त चार्ट </h2>
+    <div class="table-container">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>अ क्र </th>
+            <th>बंदोबस्त ठिकाण </th>
+            <th>अधिकारी </th>
+            <th>पोलीस निरीक्षक </th>
+            <th>पोउपनि </th>
+            <th>पोलीस अंमलदार </th>
+            <th>महिला अंमलदार </th>
+            <th>होमगार्ड  </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- First row with input fields -->
+          <tr>
+            <td>1</td>
+            <td><input type="text" class="form-control location-input" placeholder="ठिकाण"></td>
+            <td><input type="number" class="form-control integer-input" placeholder=""></td>
+            <td><input type="number" class="form-control integer-input" placeholder=""></td>
+            <td><input type="number" class="form-control integer-input" placeholder=""></td>
+            <td><input type="number" class="form-control integer-input" placeholder=""></td>
+            <td><input type="number" class="form-control integer-input" placeholder=""></td>
+            <td><input type="number" class="form-control integer-input" placeholder=""></td>
+            <td><button class="btn btn-success" onclick="saveRow(this)">Save</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-primary" id="add-row-btn">Add Location</button>
+  </div>
+
+  <!-- Template for the sub-table row addition -->
+  <template id="sub-table-template">
+    <tr>
+      <td><input type="text" class="form-control" placeholder="bn"></td>
+      <td><input type="text" class="form-control" placeholder="name"></td>
+      <td><input type="text" class="form-control" placeholder="place"></td>
+    </tr>
+  </template>
+
+  <script>
+    // Function to add a new row with input fields
+    document.getElementById('add-row-btn').addEventListener('click', function () {
+      const tableBody = document.getElementById('table-body');
+      const rowCount = tableBody.rows.length + 1;
+      
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${rowCount}</td>
+        <td><input type="text" class="form-control location-input" placeholder="Location"></td>
+        <td><input type="number" class="form-control integer-input" placeholder=""></td>
+        <td><input type="number" class="form-control integer-input" placeholder=""></td>
+        <td><input type="number" class="form-control integer-input" placeholder=""></td>
+        <td><input type="number" class="form-control integer-input" placeholder=""></td>
+        <td><input type="number" class="form-control integer-input" placeholder=""></td>
+        <td><input type="number" class="form-control integer-input" placeholder=""></td>
+        <td><button class="btn btn-success" onclick="saveRow(this)">Save</button></td>
+      `;
+      tableBody.appendChild(newRow);
+    });
+
+    // Function to save the row and display sub-table based on the integer inputs
+    function saveRow(button) {
+      const row = button.closest('tr');
+      const inputs = row.querySelectorAll('input[type="number"]');
+      const locationValue = row.querySelector('.location-input').value;
+
+      // For every input starting from Inspector
+      inputs.forEach(input => {
+        const value = parseInt(input.value);
+        if (value > 0) {
+          const template = document.getElementById('sub-table-template');
+          
+          // Insert a sub-table after the current row
+          let subTable = document.createElement('table');
+          subTable.classList.add('table', 'table-bordered', 'add-table');
+          subTable.innerHTML = `
+            <thead>
+              <tr>
+                <th>bn</th>
+                <th>name</th>
+                <th>place</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          `;
+          
+          // Add rows based on the value entered in the input field
+          const tbody = subTable.querySelector('tbody');
+          for (let i = 0; i < value; i++) {
+            const newRow = template.content.cloneNode(true);
+            // Set the location value for the place field
+            newRow.querySelector('input[placeholder="place"]').value = locationValue;
+            tbody.appendChild(newRow);
+          }
+
+          // Append the sub-table below the current input field
+          input.parentElement.appendChild(subTable);
+        }
+      });
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
